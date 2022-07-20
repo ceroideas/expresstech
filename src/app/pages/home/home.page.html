@@ -1,0 +1,151 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    	<ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Express Tech: {{data?.sin_number}}</ion-title>
+  </ion-toolbar>
+  <div *ngIf="data?.claim_id != -1" id="identification">
+    PARTITA DI DANNO - {{data?.information | damage}}
+  </div>
+</ion-header>
+
+<ion-content>
+
+  <div id="recording-audio" *ngIf="isAudioRecording">
+    <div>
+      <!-- <ion-icon style="font-size: 80px;" name="mic-circle"></ion-icon> -->
+      <img src="assets/imgs/audio.png" alt="" style="width: 100px; border-radius: 50px;">
+
+      <h1 style="color: #fff;">{{time}}</h1>
+
+      <br>
+
+      <ion-button *ngIf="recording" (click)="stopAudio()" color="secondary"> <ion-icon slot="start" name="stop"></ion-icon> Stop Recording </ion-button>
+
+      <ion-button *ngIf="!recording" (click)="playAudio()" color="success"> <ion-icon slot="start" name="play"></ion-icon> Play Audio </ion-button>
+
+      <ion-button *ngIf="!recording" (click)="uploadAudio()" color="primary"> <ion-icon slot="start" name="cloud-upload"></ion-icon> Upload Audio </ion-button>
+
+      <ion-button *ngIf="!recording" (click)="discardAudio()" color="danger"> <ion-icon slot="start" name="trash"></ion-icon> Discard Audio </ion-button>
+    </div>
+  </div>
+
+  <div id="recording-audio" *ngIf="showStop">
+    <ion-icon (click)="closeWindow()" style="
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 34px;
+    border-radius: 100px;
+    box-shadow: 0 0 7px black;
+    " name="close"></ion-icon>
+    <div>
+      <!-- <ion-icon style="font-size: 80px;" name="mic-circle"></ion-icon> -->
+      <img src="assets/imgs/audio.png" alt="" style="width: 100px; border-radius: 50px;">
+
+      <h1 style="color: #fff;">{{time}}</h1>
+
+      <br>
+      
+      <audio [src]="actualAudio" (playing)="onPlay()" (ended)="onStop()"></audio>
+
+      <ion-button (click)="play()" color="default"> <ion-icon slot="icon-only" name="play"></ion-icon> </ion-button>
+      <ion-button (click)="pause()" color="default"> <ion-icon slot="icon-only" name="pause"></ion-icon> </ion-button>
+      <ion-button (click)="stop()" color="default"> <ion-icon slot="icon-only" name="stop"></ion-icon> </ion-button>
+    </div>
+  </div>
+
+  
+  <ion-button id="reloadPosition" (click)="reloadPosition()" color="primary"><ion-icon slot="icon-only" name="refresh"></ion-icon></ion-button>
+  <div #map id="map" [ngClass]="clase">
+  </div>
+
+  <div class="image-holder" *ngIf="data?.claim_id != -1">
+    <ion-button id="closeSub" size="small" color="primary" (click)="closeSub(data?.claim_id)">CONFERMA DANNO E TORNA A PERIZIA</ion-button>
+    <ion-button id="deleteSub" size="small" color="danger" (click)="removeSub(data.id)"><ion-icon name="trash"></ion-icon></ion-button>
+
+    <div padding>
+      <ion-button block outline (click)="info()">FORNISCI INFORMAZIONI SUL SINISTRO</ion-button>
+    </div>
+
+    <h4>Media <span *ngIf="connected == 'false'">- Offline</span></h4>
+
+    <ion-slides [options]="slideOpts">
+      <ion-slide style="position: relative;">
+        <!-- <ion-button style="position: absolute; top: 3px; right: 6px; --border-radius: 100px; z-index: 10" size="small" (click)="activeOffline(m.timestamp,'image')"> <ion-icon slot="icon-only" n"cog"></ion-icon> </button> -->
+        <div id="add-media" [ngClass]="_clase" (click)="select()">
+          <ion-icon name="camera"></ion-icon>
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngFor="let m of audios_offline; let i = index" style="position: relative;">
+        <button class="btn-settings" (click)="activeOffline(m.timestamp,'audio')"> <ion-icon slot="icon-only" name="cog"></ion-icon> </button>
+        <div class="shared-media media-offline" [ngClass]="_clase" (click)="previewOffline(m)" [ngStyle]="{ 'background-image': 'url(' + m.preview + ')'}">
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngFor="let m of media_offline; let i = index" style="position: relative;">
+        <button class="btn-settings" (click)="activeOffline(m.timestamp,'image')"> <ion-icon slot="icon-only" name="cog"></ion-icon> </button>
+        <div class="shared-media media-offline" [ngClass]="_clase" (click)="previewOffline(m)" [ngStyle]="{ 'background-image': 'url(' + m.preview + ')'}">
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngFor="let m of video_offline; let i = index" style="position: relative;">
+        <button class="btn-settings" (click)="activeOffline(m.timestamp,'video')"> <ion-icon slot="icon-only" name="cog"></ion-icon> </button>
+        <div class="shared-media media-offline" [ngClass]="_clase" (click)="previewOffline(m)" [ngStyle]="{ 'background-image': 'url(' + m.preview + ')'}">
+        </div>
+      </ion-slide>
+
+      <ion-slide *ngFor="let m of media" style="position: relative;">
+        <button class="btn-settings" (click)="active(m.id)"> <ion-icon slot="icon-only" name="cog"></ion-icon> </button>
+        <div class="shared-media" [ngClass]="_clase" (click)="preview(m)" [ngStyle]="{ 'background-image': 'url(' + m.preview + ')'}">
+        </div>
+      </ion-slide>
+
+    </ion-slides>
+
+  </div>
+
+  <div *ngIf="data?.claim_id == -1" style="background-color: #fff; text-align: center;">
+    <ion-button id="new" size="small" color="primary" (click)="newSin()">CREA PARTITA DI DANNO</ion-button>
+    <ion-button id="close" size="small" color="danger" (click)="closeSin()">CONFERMA E CHIUDI</ion-button>
+    <div style="clear: both"></div>
+
+    <ion-button id="finish" style="float: unset;" size="small" color="warning" (click)="notFinished()">SOPRALLUOGO NON FATTO</ion-button>
+
+    <ion-list style="width: 100%;">
+      <ion-item *ngIf="data.claims.length == 0 && offline.length == 0" style="height: 160px;">
+        <div id="empty-list">
+          <div>
+            <ion-icon name="clipboard"></ion-icon>
+            <h4>Niente da mostrare</h4>
+          </div>
+        </div>
+      </ion-item>
+      <ion-item *ngFor="let claim of data.claims; let i = index">
+        {{i+1}} Danno: {{claim.information | damage}}
+
+        <ion-button size="small" slot="end" (click)="check(claim)">VAI</ion-button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list style="width: 100%; border-top: 1px solid #eee" *ngIf="offline.length > 0">
+      <ion-item *ngFor="let claim of offline; let i = index">
+        {{i+1}} Danno: {{claim.information | damage}}
+        <ion-button size="small" slot="end" (click)="check(claim)">VAI</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

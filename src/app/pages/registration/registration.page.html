@@ -1,0 +1,194 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  	<ion-buttons slot="start">
+  		<ion-back-button text=""></ion-back-button>
+  	</ion-buttons>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding">
+
+	<img src="assets/imgs/logo.png" alt="" style="margin: 50px auto; display: block; width: 80%">
+
+	<div class="user-container">
+		<ion-list>
+
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-input type="email" placeholder="E-mail" [(ngModel)]="todo.email" ></ion-input>
+			</ion-item>
+
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-input type="text" placeholder="Nome e Cognome" [(ngModel)]="todo.name" ></ion-input>
+			</ion-item>
+
+			<!-- <ion-item lines="none" class="ion-no-padding">
+				<ion-input type="text" placeholder="Indirizzo" [(ngModel)]="todo.address" ></ion-input>
+			</ion-item> -->
+
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-input type="password" placeholder="Password" [(ngModel)]="todo.password" ></ion-input>
+			</ion-item>
+
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-input type="password" placeholder="Repeti la Password" [(ngModel)]="todo.password_confirmation" ></ion-input>
+			</ion-item>
+		</ion-list>
+
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-label stacked>
+				Prefisso internazionale
+			</ion-label>
+			<ion-select [(ngModel)]="code">
+				<ion-select-option value="1907">Alaska (+1907)</ion-select-option>
+				<ion-select-option value="213">Argelia (+213)</ion-select-option>
+				<ion-select-option value="355">Albania (+355)</ion-select-option>
+				<ion-select-option value="54">Argentina (+54)</ion-select-option>
+				<ion-select-option value="49">Alemania (+49)</ion-select-option>
+				<ion-select-option value="374">Armenia (+374)</ion-select-option>
+				<ion-select-option value="376">Andorra (+376)</ion-select-option>
+				<ion-select-option value="61">Australia (+61)</ion-select-option>
+				<ion-select-option value="244">Angola (+244)</ion-select-option>
+				<ion-select-option value="43">Austria (+43)</ion-select-option>
+				<ion-select-option value="966">Arabia Saudí (+966)</ion-select-option>
+				<ion-select-option value="973">Bahreim (+973)</ion-select-option>
+				<ion-select-option value="387">Bosnia (+387)</ion-select-option>
+				<ion-select-option value="880">Bangladesh (+880)</ion-select-option>
+				<ion-select-option value="55">Brasil (+55)</ion-select-option>
+				<ion-select-option value="32">Bélgica (+32)</ion-select-option>
+				<ion-select-option value="359">Bulgaria (+359)</ion-select-option>
+				<ion-select-option value="591">Bolivia (+591)</ion-select-option>
+				<ion-select-option value="238">Cabo Verde (+238)</ion-select-option>
+				<ion-select-option value="57">Colombia (+57)</ion-select-option>
+				<ion-select-option value="855">Camboya (+855)</ion-select-option>
+				<ion-select-option value="242">Congo, Rep. del (+242)</ion-select-option>
+				<ion-select-option value="237">Camerún (+237)</ion-select-option>
+				<ion-select-option value="243">Congo, Rep. Democ. (+243)</ion-select-option>
+				<ion-select-option value="1">Canadá (+1)</ion-select-option>
+				<ion-select-option value="850">Corea, Rep. Democ. (+850)</ion-select-option> 
+				<ion-select-option value="236">Centroafricana, Rep. (+236)</ion-select-option>
+				<ion-select-option value="82">Corea, Rep. (+82)</ion-select-option>
+				<ion-select-option value="420">Checa, Rep. (+420)</ion-select-option>
+				<ion-select-option value="225">Costa de Marfil (+225)</ion-select-option>
+				<ion-select-option value="56">Chile (+56)</ion-select-option>
+				<ion-select-option value="506">Costa Rica (+506)</ion-select-option>
+				<ion-select-option value="86">China (+86)</ion-select-option>
+				<ion-select-option value="385">Croacia (+385)</ion-select-option>
+				<ion-select-option value="357">Chipre (+357)</ion-select-option>
+				<ion-select-option value="53">Cuba (+53)</ion-select-option>
+				<ion-select-option value="45">Dinamarca (+45)</ion-select-option>
+				<ion-select-option value="1809">Dominicana, Rep. (+1809)</ion-select-option>
+				<ion-select-option value="593">Ecuador (+593)</ion-select-option>
+				<ion-select-option value="386">Eslovenia (+386)</ion-select-option>
+				<ion-select-option value="20">Egipto (+20)</ion-select-option>
+				<ion-select-option value="34">España (+34)</ion-select-option>
+				<ion-select-option value="503">El Salvador (+503)</ion-select-option>
+				<ion-select-option value="1">Estados Unidos (+1)</ion-select-option>
+				<ion-select-option value="971">Emiratos Árabes Unidos (+971)</ion-select-option>
+				<ion-select-option value="372">Estonia (+372)</ion-select-option>
+				<ion-select-option value="421">Eslovaca, Rep. (+421)</ion-select-option>
+				<ion-select-option value="251">Etiopía (+251)</ion-select-option>
+				<ion-select-option value="63">Filipinas (+63)</ion-select-option>
+				<ion-select-option value="33">Francia (+33)</ion-select-option>
+				<ion-select-option value="358">Finlandia (+358)</ion-select-option>
+				<ion-select-option value="9567">Gibraltar (+9567)</ion-select-option>
+				<ion-select-option value="502">Guatemala (+502)</ion-select-option>
+				<ion-select-option value="30">Grecia (+30)</ion-select-option>
+				<ion-select-option value="240">Guinea Ecuatorial (+240)</ion-select-option>
+				<ion-select-option value="299">Groenlandia (+299)</ion-select-option>
+				<ion-select-option value="509">Haití (+509)</ion-select-option>
+				<ion-select-option value="852">Hong Kong (+852)</ion-select-option>
+				<ion-select-option value="1808">Hawai (+1808)</ion-select-option>
+				<ion-select-option value="36">Hungría (+36)</ion-select-option>
+				<ion-select-option value="504">Honduras (+504)</ion-select-option>
+				<ion-select-option value="91">India (+91)</ion-select-option>
+				<ion-select-option value="353">Irlanda (+353)</ion-select-option>
+				<ion-select-option value="62">Indonesia (+62)</ion-select-option>
+				<ion-select-option value="354">Islandia (+354)</ion-select-option>
+				<ion-select-option value="98">Irán (+98)</ion-select-option>
+				<ion-select-option value="972">Israel (+972)</ion-select-option>
+				<ion-select-option value="964">Irak (+964)</ion-select-option>
+				<ion-select-option selected value="39">Italia, Vaticano (+39)</ion-select-option>
+				<ion-select-option value="1876">Jamaica (+1876)</ion-select-option>
+				<ion-select-option value="962">Jordania (+962)</ion-select-option>
+				<ion-select-option value="81">Japón (+81)</ion-select-option>
+				<ion-select-option value="254">Kenia (+254)</ion-select-option>
+				<ion-select-option value="965">Kuwait (+965)</ion-select-option>
+				<ion-select-option value="856">Laos (+856)</ion-select-option>
+				<ion-select-option value="218">Libia (+218)</ion-select-option>
+				<ion-select-option value="371">Letonia (+371)</ion-select-option>
+				<ion-select-option value="41">Liechtenstein (+41)</ion-select-option>
+				<ion-select-option value="961">Líbano (+961)</ion-select-option>
+				<ion-select-option value="370">Lituania (+370)</ion-select-option>
+				<ion-select-option value="231">Liberia (+231)</ion-select-option>
+				<ion-select-option value="352">Luxemburgo (+352)</ion-select-option>
+				<ion-select-option value="261">Madagascar (+261)</ion-select-option>
+				<ion-select-option value="52">México (+52)</ion-select-option>
+				<ion-select-option value="60">Malasia (+60)</ion-select-option>
+				<ion-select-option value="373">Moldavia (+373)</ion-select-option>
+				<ion-select-option value="356">Malta (+356)</ion-select-option>
+				<ion-select-option value="377">Mónaco (+377)</ion-select-option>
+				<ion-select-option value="212">Marruecos (+212)</ion-select-option>
+				<ion-select-option value="976">Mongolia (+976)</ion-select-option>
+				<ion-select-option value="596">Martinica (+596)</ion-select-option>
+				<ion-select-option value="258">Mozambique (+258)</ion-select-option>
+				<ion-select-option value="222">Mauritania (+222)</ion-select-option>
+				<ion-select-option value="264">Namibia (+264)</ion-select-option>
+				<ion-select-option value="234">Nigeria (+234)</ion-select-option>
+				<ion-select-option value="977">Nepal (+977)</ion-select-option>
+				<ion-select-option value="47">Noruega (+47)</ion-select-option>
+				<ion-select-option value="505">Nicaragua (+505)</ion-select-option>
+				<ion-select-option value="64">Nueva Zelanda (+64)</ion-select-option>
+				<ion-select-option value="31">Países Bajos (+31)</ion-select-option>
+				<ion-select-option value="51">Perú (+51)</ion-select-option>
+				<ion-select-option value="92">Pakistán (+92)</ion-select-option>
+				<ion-select-option value="48">Polonia (+48)</ion-select-option>
+				<ion-select-option value="507">Panamá (+507)</ion-select-option>
+				<ion-select-option value="351">Portugal (+351)</ion-select-option>
+				<ion-select-option value="595">Paraguay (+595)</ion-select-option>
+				<ion-select-option value="1787">Puerto Rico (+1787)</ion-select-option>
+				<ion-select-option value="974">Qatar (+974)</ion-select-option>
+				<ion-select-option value="44">Reino Unido (+44)</ion-select-option>
+				<ion-select-option value="7">Rusia (+7)</ion-select-option>
+				<ion-select-option value="40">Rumania (+40)</ion-select-option>
+				<ion-select-option value="378">San Marino (+378)</ion-select-option>
+				<ion-select-option value="94">Sri-Lanka (+94)</ion-select-option>
+				<ion-select-option value="221">Senegal (+221)</ion-select-option>
+				<ion-select-option value="27">Sudáfrica (+27)</ion-select-option>
+				<ion-select-option value="65">Singapur (+65)</ion-select-option>
+				<ion-select-option value="249">Sudán (+249)</ion-select-option>
+				<ion-select-option value="963">Siria (+963)</ion-select-option>
+				<ion-select-option value="46">Suecia (+46)</ion-select-option>
+				<ion-select-option value="252">Somalia (+252)</ion-select-option>
+				<ion-select-option value="41">Suiza (+41)</ion-select-option>
+				<ion-select-option value="66">Tailandia (+66)</ion-select-option>
+				<ion-select-option value="216">Túnez (+216)</ion-select-option>
+				<ion-select-option value="886">Taiwan (+886)</ion-select-option>
+				<ion-select-option value="90">Turquía (+90)</ion-select-option>
+				<ion-select-option value="255">Tanzania (+255)</ion-select-option>
+				<ion-select-option value="380">Ucrania (+380)</ion-select-option>
+				<ion-select-option value="598">Uruguay (+598)</ion-select-option>
+				<ion-select-option value="256">Uganda (+256)</ion-select-option>
+				<ion-select-option value="84">Vietnam (+84)</ion-select-option>
+				<ion-select-option value="58">Venezuela (+58)</ion-select-option>
+				<ion-select-option value="967">Yemen (+967)</ion-select-option>
+				<ion-select-option value="381">Yugoslavia (+381)</ion-select-option>
+				<ion-select-option value="260">Zambia (+260)</ion-select-option>
+				<ion-select-option value="263">Zimbawe (+263)</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-input type="number" placeholder="Numero di telefono" [(ngModel)]="todo.phone" ></ion-input>
+		</ion-item>
+
+		<ion-button style="width: 100%" (click)="sendSms()">Inviare SMS</ion-button>
+
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-input type="number" placeholder="Codice di verifica" [(ngModel)]="verification" ></ion-input>
+		</ion-item>
+
+		<ion-button style="width: 100%" (click)="registration()">Registro</ion-button>
+	</div>
+
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header hidden>
+
+  <ion-toolbar>
+    <ion-title>Disclaimer</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content style="text-align: center;">
+	<div class="content ion-padding" style="background-image: url('assets/imgs/disclaimer-image.png')">
+		<img src="assets/imgs/logo.png" alt="" style="margin: auto; display: block; width: 165px; margin-top: 60px; border-radius: 5px;">
+		<!-- <h1 style="text-align: center;">EXPRESS TECH</h1> -->
+		<div id="content" padding>
+			<h3 text-center>Benvenuto in <b>EXPRESS TECH</b></h3>
+			<p>Gentile Perito, prima di accedere al Servizio Le chiediamo di confermare che:</p>
+
+			<ion-list>
+			  <ion-item text-wrap>
+				<a (click)="setUnderline()" class="link" [ngClass]="clicked" href="http://www.expressclaims.it/privacy" target="_blank">(clicchi qui se vuole rivedere le) <br>
+				CONDIZIONI GENERALI DI UTILIZZO E PRIVACY POLICY
+				</a>
+			  </ion-item>
+			</ion-list>
+
+			
+			<ion-list>
+				<ion-item text-wrap>
+					<ion-label>Ho letto ed accetto integralmente le Condizioni Generali di Utilizzo e la Privacy Policy</ion-label>
+    				<ion-checkbox [(ngModel)]="q1" (ionChange)="checkIfTrue()"></ion-checkbox>
+				</ion-item>
+
+				<ion-item text-wrap>
+					<ion-label>Comprendo ed accetto che avendo installato l’applicazione verrò geolocalizzato e condividerò la mia posizione con l’Operatore</ion-label>
+    				<ion-checkbox [(ngModel)]="q2" (ionChange)="checkIfTrue()"></ion-checkbox>
+				</ion-item>
+			</ion-list>
+
+			<ion-button (click)="goToLogin()" [disabled]="!checkQs" style="width: 100%">ACCETTO E PROSEGUO</ion-button>
+			
+		</div>
+	</div>
+
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" swipeGesture="false">
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header style="color: #aaa">Menu</ion-list-header>
+          <ion-note>{{name.split('|')[0]+' '+(name.split('|')[1] ? name.split('|')[1] : '')}} <br> <small>ID: {{id}}</small></ion-note>
+        </ion-list>
+
+        <ion-list style="height: calc(70vh - 27.3px); overflow: auto; margin-bottom: 0;">
+          <ion-list-header style="margin: 0; border-bottom: 1px solid #ddd; color: #ddd;">
+            Sinistri in gestione
+
+            <ion-button style="position: absolute; right: 4px;" (click)="autoassign()">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+          </ion-list-header>    
+
+          <div *ngFor="let c of claims" style="border-top: 2px solid #333" id="all-claims">
+            <ion-item lines="none">
+                <ion-label (click)="check(c,c)">{{c.sin_number}}</ion-label>
+
+                <span item-end>
+                  <input type="checkbox" class="sinisters" [value]="c.id" style="outline: none !important;">
+                </span>
+            </ion-item>
+            <ion-item lines="none" button *ngFor="let _c of c.claims" style="padding-left: 30px;" (click)="check(_c,c)">
+              {{_c.sin_number}}
+            </ion-item>
+            <div *ngIf="(c.id | offline).length > 0">
+              <ion-item lines="none" button *ngFor="let __c of c.id | offline" style="padding-left: 30px;" (click)="check(__c,c)">
+                {{__c.sin_number}} (Offline)
+              </ion-item>
+            </div>
+          </div>
+        </ion-list>
+
+        <ion-button size="small" expand="full" fill="outline" (click)="closeSelected()">CHIUDI CHECKED</ion-button>
+
+        <span id="version">Version: 2.1.2</span>
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

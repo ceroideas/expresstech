@@ -1,0 +1,7 @@
+{
+  "name": "tech2",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

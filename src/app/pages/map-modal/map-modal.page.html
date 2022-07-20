@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="modal.dismiss()" color="light"> <ion-icon slot="icon-only" name="close"></ion-icon> </ion-button>
+    </ion-buttons>
+    <ion-title>Completa le Informazioni</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div #map1 id="map1">
+    
+  </div>
+
+  <div class="ion-padding">
+
+    <ion-list>
+      
+      <ion-item class="ion-no-padding">
+        <ion-label position="stacked">Indirizzo</ion-label>
+
+        <ion-input [(ngModel)]="address" id="address1">
+          
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="ion-no-padding">
+        <ion-label position="stacked">Data e ora</ion-label>
+        <ion-datetime doneText="Ok" cancelText="Annullare" displayFormat="DD-MM-YY HH:mm" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="pd8">
+      <ion-button color="primary" size="block" fill="outline" (click)="confirmInformation()" style="margin: 0 10px 10px;width: calc(100% - 20px);">CONFERMO E PROCEDO ALL'INVIO</ion-button>
+    </div>
+    
+  </div>
+
+</ion-content>

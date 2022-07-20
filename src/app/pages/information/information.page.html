@@ -1,0 +1,269 @@
+<ion-header>
+    <ion-toolbar color="primary">
+    	<ion-buttons slot="start">
+    		<ion-back-button color="light" text=""></ion-back-button>
+	    </ion-buttons>
+        <ion-title>
+            Informazioni sul sinistro
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+	<!-- <ion-card>
+	
+	  <ion-card-header class="ion-text-wrap">
+	    Buongiorno, il numero identificativo del suo riferimento interno è: <b>{{sin_number}}</b> Gentilmente, ci fornisca le informazioni richieste, certificanto sotto la Suaresponsabilità, l'esattezza delle stesse.
+	  </ion-card-header>
+	
+	</ion-card> -->
+
+	<ion-card>	
+	  <ion-card-content>
+	    <ion-list>
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label style="overflow: unset; white-space: unset;" position="stacked">Partita di danno:</ion-label>
+	    		<ion-input *ngIf="info?.main_information" [(ngModel)]="info.main_information[0].value" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label style="overflow: unset; white-space: unset;" position="stacked">Tipologia:</ion-label>
+	    		<ion-select [(ngModel)]="typology" (ionChange)="selectTypology()" cancel-text="Annulla" ok-text="Ok">
+	    			<ion-select-option *ngFor="let t of typologies" value="{{t.id}}">{{t.long_name+' - '+t.short_name}}</ion-select-option>
+	    		</ion-select>
+	    		<!-- <ion-input [(ngModel)]="info.typology" type="text" ></ion-input> -->
+	    	</ion-item>
+
+	    	<!-- <ion-item class="ion-no-padding">
+	    		<ion-label>Marca:</ion-label>
+	    		<ion-input [(ngModel)]="info.brand" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Modello:</ion-label>
+	    		<ion-input [(ngModel)]="info.model" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>N. Seriale:</ion-label>
+	    		<ion-input [(ngModel)]="info.serial" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Anno fabbricazione:</ion-label>
+	    		<ion-input [(ngModel)]="info.year" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Componente a danno:</ion-label>
+	    		<ion-input [(ngModel)]="info.component" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Ubicazione bene a danno:</ion-label>
+	    		<ion-select [(ngModel)]="info.location">
+	    			<ion-select-option class="ion-text-wrap">Sotto tetto</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">All'esterno</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Condizione del bene:</ion-label>
+	    		<ion-select [(ngModel)]="info.condition">
+	    			<ion-select-option class="ion-text-wrap">Adeguate al tempo di utilizzo</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Presenti evidenti segni di dannegiamento meccanico</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Il bene non è stato mostrato perchè non conservato</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Presenti evidenti segni di vetustà</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Presenti evidenti segni di dannegiamento da fenomeno elettrico</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Bene già riparato ?:</ion-label>
+	    		<ion-select [(ngModel)]="info.repaired">
+	    			<ion-select-option class="ion-text-wrap">Si, con residui conservati</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">No</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Si, ma con residui NON conservati</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Il bene al momento del sinistro era collegato a:</ion-label>
+	    		<ion-select multiple [(ngModel)]="info.connected">
+	    			<ion-select-option class="ion-text-wrap">Corrente Elettrica</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Linea tel./adsl</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Gruppo di continuità</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Antenna TV</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Differenziale</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Altro (specificare)</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Speicificare:</ion-label>
+	    		<ion-input [(ngModel)]="info.specify" type="text" ></ion-input>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Si rilevano anomalie all'impianto elettrico:</ion-label>
+	    		<ion-select [(ngModel)]="info.anomalies">
+	    			<ion-select-option class="ion-text-wrap">Si</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">No</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Se SI, quali?:</ion-label>
+	    		<ion-textarea [(ngModel)]="info.which_anomalies"></ion-textarea>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Esistevamo sistemi di protezione:</ion-label>
+	    		<ion-select [(ngModel)]="info.protection">
+	    			<ion-select-option class="ion-text-wrap">Si, danneggiati</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Si, NON danneggiati</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">No</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Se SI, quali?:</ion-label>
+	    		<ion-textarea [(ngModel)]="info.which_protection"></ion-textarea>
+	    	</ion-item> -->
+	    </ion-list>
+	  </ion-card-content>
+	
+	</ion-card>
+
+	<ion-card *ngFor="let s of sections">
+		<ion-card-header class="ion-tex-wrap">
+			{{s.name}}
+		</ion-card-header>
+
+		<ion-card-content>
+
+			<div *ngFor="let i of s.inputs">
+				
+				<ion-item class="ion-no-padding" *ngIf="i.type == 'text'">
+		    		<ion-label style="overflow: unset; white-space: unset;" position="stacked">{{i.question}}</ion-label>
+		    		<ion-input class="question" value="{{ info | information:i.id:'value' }}" attr.data-question="{{i.question}}" attr.data-id="{{i.id}}" type="text"></ion-input>
+		    	</ion-item>
+
+		    	<ion-item class="ion-no-padding" *ngIf="i.type == 'number'">
+		    		<ion-label style="overflow: unset; white-space: unset;" position="stacked">{{i.question}}</ion-label>
+		    		<ion-input class="question" value="{{ info | information:i.id:'value' }}" attr.data-question="{{i.question}}" attr.data-id="{{i.id}}" type="number"></ion-input>
+		    	</ion-item>
+
+		    	<ion-item class="ion-no-padding" *ngIf="i.type == 'select'">
+		    		<ion-label style="overflow: unset; white-space: unset;" position="stacked">{{i.question}}</ion-label>
+		    		<ion-select class="question" value="{{ info | information:i.id:'value' }}" attr.data-question="{{i.question}}" attr.data-id="{{i.id}}" cancel-text="Annulla" ok-text="Ok">
+		    			<ion-select-option *ngFor="let o of i.options">{{o.option}}</ion-select-option>
+		    		</ion-select>
+		    	</ion-item>
+
+		    	<ion-item class="ion-no-padding" *ngIf="i.type == 'checkbox'" lines="none">
+			    	<div class="question ckeckboxes" attr.data-id="{{i.id}}" attr.data-question="{{i.question}}" style="width: 100%; margin-top: 11px;">
+				    	<ion-label style="overflow: unset; white-space: unset;" position="stacked" style="height: 26px;">{{i.question}}</ion-label>
+			    		<ion-item *ngFor="let o of i.options">
+			    			<ion-label style="overflow: unset; white-space: unset; font-size: 14px;">{{o.option}}</ion-label>
+			    			<ion-checkbox checked="{{ info | information:i.id:'checkbox':o.option }}" slot="end" value="{{o.option}}"></ion-checkbox>
+			    		</ion-item>
+			    	</div>
+		    	</ion-item>
+
+			</div>
+
+		</ion-card-content>
+	</ion-card>
+
+<!-- 	<ion-card>
+	
+	  <ion-card-header class="ion-text-wrap">
+	    Tipologia TEST effettuati:
+	  </ion-card-header>
+
+	  <ion-card-content>
+	    <ion-list>
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Funzionale:</ion-label>
+	    		<ion-select [(ngModel)]="info.working">
+	    			<ion-select-option class="ion-text-wrap">Eseguito, il bene NON funziona</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Eseguito, il bene FUNZIONA</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">NON eseguibile in loco</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Visivo interno:</ion-label>
+	    		<ion-select [(ngModel)]="info.inside">
+	    			<ion-select-option class="ion-text-wrap">Evidente bruciatura</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Bruciatura non visible</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Non eseguibile</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Olfattivo:</ion-label>
+	    		<ion-select [(ngModel)]="info.olfactory">
+	    			<ion-select-option class="ion-text-wrap">Odore acre di brucio</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Nula rilevabile</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Strumentale:</ion-label>
+	    		<ion-select [(ngModel)]="info.instruments">
+	    			<ion-select-option class="ion-text-wrap">Effettuata verifica - SI danno</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Effettuata verifica - NO danno</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Non effettuata verifica / Non definitiva</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Ritiro Bene:</ion-label>
+	    		<ion-select [(ngModel)]="info.withdrawal">
+	    			<ion-select-option class="ion-text-wrap">SI, il Perito ritira il Bene</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">NO, il Perito NON ritira il Bene</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Nessuna verifica:</ion-label>
+	    		<ion-select [(ngModel)]="info.no_verification">
+	    			<ion-select-option class="ion-text-wrap">Il bene non è stato conservato</ion-select-option>
+	    			<ion-select-option class="ion-text-wrap">Il bene è presso...</ion-select-option>
+	    		</ion-select>
+	    	</ion-item>
+
+	    	<ion-item class="ion-no-padding">
+	    		<ion-label>Presso</ion-label>
+	    		<ion-textarea [(ngModel)]="info.in"></ion-textarea>
+	    	</ion-item>
+	    </ion-list>
+	</ion-card-content>
+
+	</ion-card> -->
+
+	<!-- <ion-card>
+	
+	  <ion-card-header class="ion-text-wrap">
+	    Conclusioni:
+	  </ion-card-header>
+
+	  <ion-card-content>
+	    <ion-list>
+	    	<ion-item class="ion-no-padding">
+	    		<ion-textarea [(ngModel)]="info.conclussion"></ion-textarea>
+	    	</ion-item>
+	    </ion-list>
+	  </ion-card-content>
+
+	</ion-card>	 -->
+
+	<div class="pd8">
+		<ion-button color="primary" size="block" fill="outline" (click)="confirmInformation()" style="margin: 0 10px 10px;width: calc(100% - 20px);">CONFERMO L'ESATTEZZA DEI DATI E <br> PROCEDO ALL'INVIO</ion-button>
+	</div>
+
+</ion-content>

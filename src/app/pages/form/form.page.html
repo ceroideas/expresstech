@@ -1,0 +1,97 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content> -->
+
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    	<ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Express Tech</ion-title>
+    <ion-buttons slot="end">
+      <ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+
+	<div class="ion-padding" id="fondo" style="background-image: url(../assets/imgs/disclaimer-image.png);" *ngIf="!new">
+		<!-- <div class="swiper-slide"> -->
+			<div class="container">
+				
+
+			<h3>Riferimento interno del sinistro: </h3>
+
+			<input type="text" style="background-color: #fff;" [(ngModel)]="sin_number" class="form-control">
+			<!-- <ion-list>
+				<ion-item no-padding no-lines>
+				</ion-item>
+			</ion-list> -->
+
+			<!-- <h3>Conferma: </h3>
+
+			<ion-list>
+				<ion-item no-padding no-lines>
+					<ion-input type="text" [(ngModel)]="sin_number_confirmation"></ion-input>
+				</ion-item>
+			</ion-list> -->
+
+
+
+			<ion-button color="primary" style="width: 100%" (click)="check()">PROCEDI</ion-button>
+
+			</div>
+		<!-- </div> -->
+	</div>
+
+	<div class="ion-padding" id="fondo" style="background-image: url(../assets/imgs/disclaimer-image.png);" *ngIf="new">
+		<!-- <div class="swiper-slide"> -->
+			<div class="container">
+				
+
+			<h3>Autoassegnazione incarico: </h3>
+
+			<input type="number" [(ngModel)]="sin_number_create" class="form-control" placeholder="Riferimento interno">
+
+			<input type="number" [(ngModel)]="sin_number_repeat" class="form-control" placeholder="Ripeti Riferimento interno">
+
+			<input type="text" [(ngModel)]="name" class="form-control" placeholder="Nome assicurato">
+			<!-- <ion-list>
+				<ion-item no-padding no-lines>
+				</ion-item>
+			</ion-list> -->
+
+			<!-- <h3>Conferma: </h3>
+
+			<ion-list>
+				<ion-item no-padding no-lines>
+					<ion-input type="text" [(ngModel)]="sin_number_confirmation"></ion-input>
+				</ion-item>
+			</ion-list> -->
+
+
+
+			<ion-button color="primary" style="width: 100%" (click)="create()">PROCEDI</ion-button>
+			<ion-button color="danger" style="width: 100%" (click)="cancel()">ANNULLA</ion-button>
+
+			</div>
+		<!-- </div> -->
+	</div>
+
+</ion-content>
+
+<ion-footer class="ion-padding">
+	<ion-button style="width: 100%; --background: gold; color: #fff" id="ion-button-menu" (click)="openMenu()">MENU A TENDINA</ion-button>
+</ion-footer>

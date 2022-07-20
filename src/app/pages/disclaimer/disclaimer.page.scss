@@ -1,0 +1,27 @@
+.content {
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	height: 100%;
+	overflow: auto;
+}
+div{
+	color: #fff;
+}
+ion-list {
+	ion-label{
+		color: #ccc !important;
+		white-space: normal;
+	}
+}
+#content {
+	// padding-bottom: 60px;
+}
+.link {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+}
+.underline {
+	text-decoration: underline !important;
+}
